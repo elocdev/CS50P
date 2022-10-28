@@ -13,8 +13,10 @@ elif len(sys.argv) >= 3:
     elif extensionCheck == "csv" and not path.exists(sys.argv[1]):
         sys.exit(f"Could not read {sys.argv[1]}")
     else:
-        with open(sys.argv[1]) as file:
-            reader = csv.reader(file, delimiter=",")
-            headers = next(reader)
+        with open(sys.argv[1], "r") as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                splitName = row["name"].split(",")
+                print(splitName[1])
             
             
